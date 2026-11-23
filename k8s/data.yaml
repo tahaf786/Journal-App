@@ -1,0 +1,175 @@
+# MongoDB, Redis and Kafka below are for local clusters only: single instance, no auth, no TLS.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: journal
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: true
+  selector: {app: mongo}
+  ports:
+    - {name: mongo, port: 27017}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: journal
+spec:
+  serviceName: mongo
+  replicas: 1
+  selector:
+    matchLabels: {app: mongo}
+  template:
+    metadata:
+      labels: {app: mongo}
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: mongo
+          image: mongo:7.0
+          args: ["--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+          ports:
+            - {name: mongo, containerPort: 27017}
+          readinessProbe:
+            exec:
+              command: ["mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok || quit(1)"]
+            periodSeconds: 5
+            timeoutSeconds: 10
+          resources:
+            requests: {cpu: 100m, memory: 384Mi}
+            limits: {memory: 512Mi}
+          volumeMounts:
+            - {name: data, mountPath: /data/db}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: {storage: 1Gi}
+---
+# Runs rs.initiate once; safe to retry (it checks the replica set state first).
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongo-init
+  namespace: journal
+spec:
+  backoffLimit: 20
+  template:
+    spec:
+      restartPolicy: OnFailure
+      enableServiceLinks: false
+      containers:
+        - name: init
+          image: mongo:7.0
+          command:
+            - mongosh
+            - --host
+            - mongo-0.mongo.journal.svc.cluster.local
+            - --quiet
+            - --eval
+            - "try { if (rs.status().myState === 1) quit(0); quit(1) } catch (e) { rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo-0.mongo.journal.svc.cluster.local:27017'}]}); quit(1) }"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: journal
+spec:
+  selector: {app: redis}
+  ports:
+    - {name: redis, port: 6379}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: journal
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: redis}
+  template:
+    metadata:
+      labels: {app: redis}
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: redis
+          image: redis:7.2-alpine
+          args: ["redis-server", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+          ports:
+            - {name: redis, containerPort: 6379}
+          readinessProbe:
+            exec: {command: ["redis-cli", "ping"]}
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {memory: 128Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  namespace: journal
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: true
+  selector: {app: kafka}
+  ports:
+    - {name: broker, port: 9092}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+  namespace: journal
+spec:
+  serviceName: kafka
+  replicas: 1
+  selector:
+    matchLabels: {app: kafka}
+  template:
+    metadata:
+      labels: {app: kafka}
+    spec:
+      enableServiceLinks: false
+      securityContext: {fsGroup: 1000}
+      containers:
+        - name: kafka
+          image: apache/kafka:3.9.1
+          ports:
+            - {name: broker, containerPort: 9092}
+          env:
+            - {name: KAFKA_NODE_ID, value: "1"}
+            - {name: KAFKA_PROCESS_ROLES, value: "broker,controller"}
+            - {name: KAFKA_LISTENERS, value: "PLAINTEXT://:9092,CONTROLLER://:9093"}
+            - {name: KAFKA_ADVERTISED_LISTENERS, value: "PLAINTEXT://kafka-0.kafka.journal.svc.cluster.local:9092"}
+            - {name: KAFKA_CONTROLLER_LISTENER_NAMES, value: CONTROLLER}
+            - {name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP, value: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT"}
+            - {name: KAFKA_CONTROLLER_QUORUM_VOTERS, value: "1@localhost:9093"}
+            - {name: KAFKA_INTER_BROKER_LISTENER_NAME, value: PLAINTEXT}
+            - {name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR, value: "1"}
+            - {name: KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR, value: "1"}
+            - {name: KAFKA_TRANSACTION_STATE_LOG_MIN_ISR, value: "1"}
+            - {name: KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS, value: "0"}
+            - {name: KAFKA_HEAP_OPTS, value: "-Xmx512m -Xms256m"}
+          readinessProbe:
+            tcpSocket: {port: 9092}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests: {cpu: 200m, memory: 768Mi}
+            limits: {memory: 1Gi}
+          volumeMounts:
+            - {name: data, mountPath: /var/lib/kafka/data}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests: {storage: 1Gi}

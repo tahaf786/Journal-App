@@ -1,221 +1,153 @@
-# 📔 Journal App - Spring Boot REST API
+# Journal Service
 
-A full-featured RESTful API built with Spring Boot for managing personal journal entries with user authentication, authorization, and MongoDB integration.
+A REST service for personal journals. Users register, log in and manage their own entries. The service
+uses MongoDB for storage, Redis to cache reads, Kafka to publish entry events that a consumer turns into
+a per-user activity summary, and stateless JWT authentication with Spring Security.
 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.7.18-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![Java](https://img.shields.io/badge/Java-8-orange.svg)](https://www.oracle.com/java/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green.svg)](https://www.mongodb.com/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+Stack: Java 17, Spring Boot 3.5, MongoDB 7, Redis 7, Apache Kafka (single-node KRaft), Maven.
 
-## 🚀 Features
+## Architecture
 
-- **User Management** - User registration, authentication, and profile management
-- **Journal Entries** - Create, read, update, and delete personal journal entries
-- **Secure Authentication** - JWT-based authentication and authorization
-- **Role-Based Access Control** - Admin and User roles with different permissions
-- **MongoDB Integration** - Cloud-based MongoDB Atlas for data persistence
-- **RESTful API Design** - Well-structured endpoints following REST principles
-- **Input Validation** - Server-side validation for data integrity
-- **Exception Handling** - Global exception handling with meaningful error messages
-- **API Documentation** - Comprehensive API documentation for easy integration
+```mermaid
+flowchart LR
+    Client -->|HTTPS + Bearer JWT| API[Journal service<br/>Spring Boot]
+    API -->|read / write| Mongo[(MongoDB<br/>replica set)]
+    API -->|cache reads| Redis[(Redis)]
+    API -->|entry events| Topic[[Kafka topic<br/>journal.entry-events]]
+    Topic --> Consumer[Stats consumer<br/>same service]
+    Consumer -->|upsert summary| Mongo
+    Topic -.->|poison messages| DLT[[journal.entry-events.dlt]]
+    Topic -.->|optional: app.rag.enabled| Indexer[RAG indexer<br/>group journal-rag]
+    Indexer -->|embed title + content| Ollama[Ollama<br/>embedding + chat models]
+    Indexer -->|upsert / delete point| Qdrant[(Qdrant<br/>journal_entries)]
+    API -.->|POST /ask: embed, filter by user, generate| Ollama
+    API -.->|search with userId filter| Qdrant
+```
 
-## 🛠️ Technologies Used
+Request path for an entry write: the controller validates the body, the service checks ownership, saves
+to MongoDB, evicts the affected cache keys and publishes an event to Kafka. The consumer applies the event
+to the `activity_stats` collection. `GET /api/v1/users/me/stats` reads that summary.
 
-### Backend
-- **Spring Boot 2.7.18** - Application framework
-- **Spring Data MongoDB** - MongoDB integration
-- **Spring Security** - Authentication and authorization
-- **JWT (JSON Web Tokens)** - Secure token-based authentication
-- **Hibernate Validator** - Input validation
-- **Lombok** - Reducing boilerplate code
-- **Maven** - Dependency management and build tool
+## Ask my journal (optional)
 
-### Database
-- **MongoDB Atlas** - Cloud-hosted NoSQL database
+`POST /api/v1/ask` answers a question from the caller's own entries only (retrieval-augmented generation).
+A second Kafka consumer group (`journal-rag`) embeds each created or updated entry and keeps one point per
+entry in Qdrant; a question is embedded, searched with a mandatory `userId` filter, and the top entries are
+given to a small local chat model through Ollama. It is off by default. Details and measured results:
+[docs/RETRIEVAL.md](docs/RETRIEVAL.md).
 
-### Tools
-- **Postman** - API testing
-- **IntelliJ IDEA** - IDE
-- **Git** - Version control
-
-## 📋 Prerequisites
-
-- Java 8 or higher
-- Maven 3.6+
-- MongoDB Atlas account (or local MongoDB instance)
-- Postman (for API testing)
-
-## ⚙️ Installation & Setup
-
-### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/journal-app.git
-cd journal-app
+APP_RAG_ENABLED=true docker compose --profile rag up -d   # adds ollama, qdrant and a one-shot model pull
 ```
 
-### 2. Configure MongoDB
-Update `src/main/resources/application.properties`:
-```properties
-spring.data.mongodb.uri=mongodb+srv://your_username:your_password@cluster0.xxxxx.mongodb.net/journaldb?retryWrites=true&w=majority
-spring.data.mongodb.auto-index-creation=true
-server.port=8080
-```
+The first start downloads the two models (about 1.7 GB). Without the profile and the variable, nothing changes.
 
-### 3. Build the project
+## Run it
+
+Requirements: Docker with Compose.
+
 ```bash
-mvn clean install
+docker compose up -d --build     # app, mongo, redis, kafka; waits for health checks
+docker compose ps                # all four services should report healthy
+scripts/smoke.sh                 # end-to-end check against the running stack
+docker compose down              # stop (add -v to also remove data volumes)
 ```
 
-### 4. Run the application
+- API: `http://localhost:8080/api/v1`
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- Health: `http://localhost:8080/actuator/health`, metrics: `http://localhost:8080/actuator/prometheus`
+
+Copy `.env.example` to `.env` to override settings. The compose file contains a clearly labelled local
+development value for `JWT_SECRET`; set your own for anything shared. To create a first administrator,
+set `ADMIN_USERNAME` and `ADMIN_PASSWORD` before starting.
+
+Run the tests (needs Docker, because the integration tests start MongoDB, Redis and Kafka with
+Testcontainers):
+
 ```bash
-mvn spring-boot:run
+./mvnw verify
 ```
 
-The application will start on `http://localhost:8080`
+Surefire runs the unit tests (`*Test`), Failsafe runs the integration tests (`*IT`). The JaCoCo report is
+written to `target/site/jacoco/index.html`.
 
-## 🔌 API Endpoints
+### Configuration
 
-### Authentication
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| POST | `/user` | Register new user | Public |
-| POST | `/auth/login` | User login | Public |
+| Property / environment variable | Default | Meaning |
+|---|---|---|
+| `JWT_SECRET` | none, required | HMAC signing key, at least 32 characters |
+| `MONGODB_URI` | `mongodb://localhost:27017/journal?replicaSet=rs0` | MongoDB connection |
+| `REDIS_HOST`, `REDIS_PORT` | `localhost`, `6379` | Redis connection |
+| `KAFKA_BOOTSTRAP_SERVERS` | `localhost:9092` | Kafka connection |
+| `app.cache.enabled` / `APP_CACHE_ENABLED` | `true` | Turns the Redis cache on or off |
+| `app.cache.entry-ttl`, `app.cache.page-ttl` | `10m`, `2m` | Time to live of cached entries and pages |
+| `app.jwt.access-ttl`, `app.jwt.refresh-ttl` | `15m`, `7d` | Token lifetimes |
+| `ADMIN_USERNAME`, `ADMIN_PASSWORD` | empty | Creates an initial administrator if both are set |
+| `app.rag.enabled` / `APP_RAG_ENABLED` | `false` | Turns on indexing and `POST /ask` |
+| `OLLAMA_URL`, `QDRANT_URL` | `http://localhost:11434`, `http://localhost:6333` | Model server and vector store |
+| `RAG_CHAT_MODEL` | `llama3.2:1b` | Chat model name in Ollama (embeddings: `nomic-embed-text`) |
 
-### User Management
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| GET | `/user` | Get all users | Admin |
-| PUT | `/user/{username}` | Update user | Authenticated |
-| DELETE | `/user/{username}` | Delete user | Admin |
+## Kubernetes (local kind cluster)
 
-### Journal Entries
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| GET | `/journalapp/{username}` | Get all entries for user | Owner/Admin |
-| POST | `/journalapp/{username}` | Create new entry | Owner |
-| GET | `/journalapp/id/{id}` | Get entry by ID | Owner/Admin |
-| PUT | `/journalapp/id/{username}/{id}` | Update entry | Owner |
-| DELETE | `/journalapp/id/{username}/{id}` | Delete entry | Owner |
+Manifests in `k8s/` and `scripts/k8s-up.sh` run the base stack (app x2, MongoDB, Redis, Kafka) on a local kind cluster and run the smoke test against it. Local demo only, not a production cluster. Details and recorded output: [docs/KUBERNETES.md](docs/KUBERNETES.md).
 
-## 📝 Sample API Requests
+## Endpoints
 
-### Register a new user
-```bash
-POST http://localhost:8080/user
-Content-Type: application/json
+All paths are under `/api/v1`. Everything except `/auth/*` requires `Authorization: Bearer <access token>`.
 
-{
-  "userName": "john_doe",
-  "password": "securePassword123"
-}
-```
+| Method | Path | Role | Description |
+|---|---|---|---|
+| POST | `/auth/register` | public | Create an account |
+| POST | `/auth/login` | public | Exchange credentials for access and refresh tokens |
+| POST | `/auth/refresh` | public | Exchange a refresh token for new tokens |
+| POST | `/entries` | USER | Create an entry |
+| GET | `/entries` | USER | List own entries. Parameters: `page`, `size` (max 100), `sort` (`date` or `title`), `q` (text search) |
+| GET | `/entries/{id}` | USER | Read an own entry |
+| PUT | `/entries/{id}` | USER | Update an own entry |
+| DELETE | `/entries/{id}` | USER | Delete an own entry |
+| GET | `/users/me` | USER | Read own profile |
+| PUT | `/users/me` | USER | Update display name, optionally change password |
+| DELETE | `/users/me` | USER | Delete the account with its entries and stats |
+| GET | `/users/me/stats` | USER | Entry count, last entry date, current daily streak |
+| POST | `/ask` | USER | Answer a question from own entries (needs `app.rag.enabled`). Body: `question`, optional `topK` (1 to 10, default 4). 503 when Ollama or Qdrant is down |
+| POST | `/admin/rag/reindex` | ADMIN | Rebuild vector points from MongoDB; optional `userId` parameter limits it to one user |
+| GET | `/admin/users` | ADMIN | List users (paged) |
+| GET | `/admin/users/{id}` | ADMIN | Read a user |
+| PUT | `/admin/users/{id}/admin` | ADMIN | Grant the admin role |
+| DELETE | `/admin/users/{id}/admin` | ADMIN | Revoke the admin role |
 
-### Create a journal entry
-```bash
-POST http://localhost:8080/journalapp/john_doe
-Content-Type: application/json
-Authorization: Bearer <your_jwt_token>
+Errors use one JSON shape: `timestamp`, `status`, `error`, `message`, `path` and a `violations` list of
+`{field, message}` for validation failures. A request for another user's entry returns 404, so the
+existence of the entry is not revealed.
 
-{
-  "title": "My First Entry",
-  "content": "Today was a productive day learning Spring Boot!"
-}
-```
+## Design decisions
 
-### Get all entries for a user
-```bash
-GET http://localhost:8080/journalapp/john_doe
-Authorization: Bearer <your_jwt_token>
-```
-
-## 🏗️ Project Structure
-
-```
-journal-app/
-├── src/
-│   ├── main/
-│   │   ├── java/com/devtaha/journalapp/
-│   │   │   ├── controller/          # REST Controllers
-│   │   │   ├── entity/              # MongoDB Entity Models
-│   │   │   ├── repository/          # Data Access Layer
-│   │   │   ├── service/             # Business Logic Layer
-│   │   │   ├── config/              # Security & App Configuration
-│   │   │   ├── exception/           # Custom Exceptions
-│   │   │   └── dto/                 # Data Transfer Objects
-│   │   └── resources/
-│   │       └── application.properties
-│   └── test/                        # Unit & Integration Tests
-├── pom.xml
-└── README.md
-```
-
-## 🔐 Security
-
-- Passwords are encrypted using BCrypt
-- JWT tokens expire after 24 hours
-- Role-based authorization (USER, ADMIN)
-- Protected endpoints require valid JWT token
-- CORS configured for secure cross-origin requests
-
-## 🧪 Testing
-
-Run tests using:
-```bash
-mvn test
-```
-
-Use Postman collection (included in `/postman` directory) for manual API testing.
-
-## 📚 Key Concepts Implemented
-
-- **Dependency Injection** - Using @Autowired for loose coupling
-- **Layered Architecture** - Controller → Service → Repository pattern
-- **DTO Pattern** - Data Transfer Objects for API responses
-- **Exception Handling** - @ControllerAdvice for global exception handling
-- **Validation** - @Valid annotation with Hibernate Validator
-- **Logging** - SLF4J for application logging
-- **Pagination & Sorting** - For efficient data retrieval
-- **Transactional Management** - @Transactional for data consistency
-
-## 🐛 Troubleshooting
-
-### MongoDB Connection Issues
-- Verify MongoDB Atlas connection string
-- Check network access settings (IP whitelist)
-- Ensure database user has proper permissions
-
-### Authentication Errors
-- Verify JWT token is included in Authorization header
-- Check token expiration
-- Ensure user has appropriate role for the endpoint
-
-## 📈 Future Enhancements
-
-- [ ] Email verification for new users
-- [ ] Password reset functionality
-- [ ] Rich text editor support for journal entries
-- [ ] Tags and categories for entries
-- [ ] Search functionality
-- [ ] File attachments (images, documents)
-- [ ] Export journal as PDF
-- [ ] Mobile app integration
-
-## 👨‍💻 Author
-
-**Taha Farooqi**
-- LinkedIn: https://www.linkedin.com/in/taha-farooqi-b84119244/
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-- Engineering Digest, Vipul tyagi
-- Spring Boot Documentation
-- MongoDB Atlas Documentation
-- Baeldung Spring Security Tutorials
-- Stack Overflow Community
-
----
-
-⭐ If you found this project helpful, please give it a star!
+- **Stateless JWT with two token types.** The access token (15 minutes) authorizes API calls. The refresh
+  token (7 days) is accepted only by `/auth/refresh`; a `typ` claim keeps them apart. Refresh reloads the
+  user, so a deleted account cannot refresh and role changes apply to newly issued tokens. There is no
+  token revocation list: a stolen access token stays valid until it expires.
+- **Roles from the token, enforced with method security.** `AdminController` uses
+  `@PreAuthorize("hasRole('ADMIN')")`. Passwords are hashed with BCrypt.
+- **Ownership is part of every query.** Entries are read with `findByIdAndUserId`, so access control does
+  not depend on remembering a separate check.
+- **MongoDB indexes.** Unique index on `users.username`; compound index `{userId, date: -1}` for a user's
+  entries newest first; a text index on title and content for the `q` parameter; a TTL index that removes
+  processed-event markers after seven days.
+- **Transaction for user deletion.** Deleting a user removes the user, their entries and their stats in
+  one multi-document transaction, which is why compose runs MongoDB as a single-node replica set.
+- **Cache-aside with Spring Cache on Redis.** Single entries (`entries`, key `userId:entryId`, 10 minute
+  TTL) and entry pages (`entryPages`, 2 minute TTL) are cached as JSON. Updates and deletes evict the
+  entry key. Any write clears all cached pages, which is simple and correct but coarse: one user's write
+  empties every user's cached pages. If Redis is unreachable, cache errors are logged and requests fall
+  back to MongoDB. `app.cache.enabled=false` swaps in a no-op cache manager.
+- **Kafka events keyed by user id.** Events for one user land on one partition, so the consumer sees
+  them in order, which the streak calculation needs. The consumer is idempotent: it inserts the event id
+  into `processed_events` and updates the summary in one transaction, so a redelivered event is skipped.
+  Failed records are retried twice, then sent to `journal.entry-events.dlt`; messages that cannot be
+  deserialized go there directly.
+- **Known limits.** Publishing to Kafka happens after the MongoDB write and is not atomic with it (no
+  outbox), so an event can be lost if the process dies between the two. The streak is counted in UTC days
+  and is not recomputed when an entry is deleted. Tokens of a deleted user remain valid until they expire.
+- **Operations.** Actuator exposes health (with liveness and readiness probes) and Prometheus metrics.
+  Logs are structured JSON (ECS format). The Docker image is built in two stages and runs as a
+  non-root user.
