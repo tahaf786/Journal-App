@@ -1,0 +1,75 @@
+
+
+  █ THRESHOLDS 
+
+    events_created
+    ✓ 'count>=0' count=34623
+
+      {scenario:measure}
+      ✓ 'count>=0' count=26258
+
+    events_deleted
+    ✓ 'count>=0' count=6910
+
+      {scenario:measure}
+      ✓ 'count>=0' count=5244
+
+    events_updated
+    ✓ 'count>=0' count=34623
+
+      {scenario:measure}
+      ✓ 'count>=0' count=26258
+
+    http_req_duration{scenario:measure}
+    ✓ 'max>=0' max=113.28ms
+
+    http_req_failed{scenario:measure}
+    ✓ 'rate<0.01' rate=0.00%
+
+    http_reqs{scenario:measure}
+    ✓ 'count>=0' count=57760
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 76156   117.44577/s
+    checks_succeeded...: 100.00% 76156 out of 76156
+    checks_failed......: 0.00%   0 out of 76156
+
+    ✓ create 201
+    ✓ update 200
+    ✓ delete 204
+
+    CUSTOM
+    events_created.................: 34623   53.394675/s
+      { scenario:measure }.........: 26258   40.494394/s
+    events_deleted.................: 6910    10.656419/s
+      { scenario:measure }.........: 5244    8.087158/s
+    events_updated.................: 34623   53.394675/s
+      { scenario:measure }.........: 26258   40.494394/s
+    verify_drain_seconds...........: 563.931 min=563.931     max=563.931
+    verify_entries_stored..........: 27713   min=27713       max=27713  
+    verify_ok......................: 1       min=1           max=1      
+    verify_stats_entry_count.......: 27713   min=27713       max=27713  
+
+    HTTP
+    http_req_duration..............: min=713.54µs med=16.74ms avg=14.25ms p(90)=25.42ms p(95)=29.14ms p(99)=40.33ms max=152.74ms
+      { expected_response:true }...: min=713.54µs med=16.74ms avg=14.25ms p(90)=25.42ms p(95)=29.14ms p(99)=40.33ms max=152.74ms
+      { scenario:measure }.........: min=6.34ms   med=19.31ms avg=20.54ms p(90)=27.17ms p(95)=31.26ms p(99)=42.92ms max=113.28ms
+    http_req_failed................: 0.00%   0 out of 115696
+      { scenario:measure }.........: 0.00%   0 out of 57760
+    http_reqs......................: 115696  178.423313/s
+      { scenario:measure }.........: 57760   89.075945/s
+
+    EXECUTION
+    iteration_duration.............: min=18.02ms  med=42.5ms  avg=46.22ms p(90)=64.46ms p(95)=72.56ms p(99)=94.68ms max=189.62ms
+    iterations.....................: 34623   53.394675/s
+    vus............................: 0       min=0           max=20     
+    vus_max........................: 40      min=40          max=40     
+
+    NETWORK
+    data_received..................: 60 MB   92 kB/s
+    data_sent......................: 61 MB   94 kB/s
+
+
+

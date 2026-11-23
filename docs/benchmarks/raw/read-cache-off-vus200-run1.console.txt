@@ -1,0 +1,55 @@
+
+
+  █ THRESHOLDS 
+
+    checks{scenario:measure}
+    ✓ 'rate>=0' rate=100.00%
+
+    http_req_duration{scenario:measure,ep:get_entry}
+    ✓ 'max>=0' max=768.14ms
+
+    http_req_duration{scenario:measure,ep:list_entries}
+    ✓ 'max>=0' max=1s
+
+    http_req_duration{scenario:measure}
+    ✓ 'max>=0' max=1s
+
+    http_req_failed{scenario:measure}
+    ✓ 'rate<0.01' rate=0.00%
+
+    http_reqs{scenario:measure}
+    ✓ 'count>=0' count=301453
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 395045  4502.867995/s
+    checks_succeeded...: 100.00% 395045 out of 395045
+    checks_failed......: 0.00%   0 out of 395045
+
+    ✓ get 200
+    ✓ list 200
+
+    HTTP
+    http_req_duration........................: min=777.01µs med=30.82ms avg=40.11ms p(90)=68.18ms p(95)=124.4ms  p(99)=246.27ms max=1s      
+      { expected_response:true }.............: min=777.01µs med=30.82ms avg=40.11ms p(90)=68.18ms p(95)=124.4ms  p(99)=246.27ms max=1s      
+      { scenario:measure,ep:get_entry }......: min=1.07ms   med=29.69ms avg=36.8ms  p(90)=56.36ms p(95)=108.42ms p(99)=225.21ms max=768.14ms
+      { scenario:measure,ep:list_entries }...: min=1.6ms    med=34.31ms avg=45.9ms  p(90)=83.46ms p(95)=141.75ms p(99)=264.85ms max=1s      
+      { scenario:measure }...................: min=1.07ms   med=30.96ms avg=39.53ms p(90)=64.18ms p(95)=119.59ms p(99)=238.37ms max=1s      
+    http_req_failed..........................: 0.00%  0 out of 396365
+      { scenario:measure }...................: 0.00%  0 out of 301453
+    http_reqs................................: 396365 4517.91384/s
+      { scenario:measure }...................: 301453 3436.072006/s
+
+    EXECUTION
+    iteration_duration.......................: min=1.22ms   med=31.11ms avg=40.47ms p(90)=68.74ms p(95)=124.9ms  p(99)=246.75ms max=1s      
+    iterations...............................: 395045 4502.867995/s
+    vus......................................: 200    min=0           max=200
+    vus_max..................................: 400    min=400         max=400
+
+    NETWORK
+    data_received............................: 1.2 GB 13 MB/s
+    data_sent................................: 156 MB 1.8 MB/s
+
+
+
