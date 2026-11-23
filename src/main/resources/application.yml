@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: journal-app
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/journal?replicaSet=rs0}
+      auto-index-creation: true
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 500ms
+      connect-timeout: 1s
+    web:
+      pageable:
+        max-page-size: 100
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: journal-stats
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.value.default.type: com.devtaha.journalapp.event.EntryEvent
+        spring.json.trusted.packages: com.devtaha.journalapp.event
+        spring.json.use.type.headers: false
+
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  structured:
+    format:
+      console: ecs
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    # Required. Provide a random string of at least 32 characters through JWT_SECRET.
+    secret: ${JWT_SECRET}
+    access-ttl: 15m
+    refresh-ttl: 7d
+  cache:
+    enabled: true
+    entry-ttl: 10m
+    page-ttl: 2m
+  kafka:
+    entry-events-topic: journal.entry-events
+    dead-letter-topic: journal.entry-events.dlt
+    partitions: 3
+  admin:
+    username: ${ADMIN_USERNAME:}
+    password: ${ADMIN_PASSWORD:}
+  rag:
+    # Off by default: the base stack needs no model server or vector store.
+    enabled: ${APP_RAG_ENABLED:false}
+    ollama-url: ${OLLAMA_URL:http://localhost:11434}
+    qdrant-url: ${QDRANT_URL:http://localhost:6333}
+    embed-model: nomic-embed-text
+    chat-model: ${RAG_CHAT_MODEL:llama3.2:1b}
