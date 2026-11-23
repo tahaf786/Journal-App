@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: journal-config
+  namespace: journal
+data:
+  MONGODB_URI: mongodb://mongo-0.mongo.journal.svc.cluster.local:27017/journal?replicaSet=rs0
+  REDIS_HOST: redis
+  KAFKA_BOOTSTRAP_SERVERS: kafka-0.kafka.journal.svc.cluster.local:9092
+  APP_CACHE_ENABLED: "true"
+  APP_RAG_ENABLED: "false"
+  JAVA_TOOL_OPTIONS: -Xmx384m
+  ROLLOUT_MARKER: "1"

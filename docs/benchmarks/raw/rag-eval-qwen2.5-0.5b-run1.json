@@ -1,0 +1,354 @@
+{
+ "summary": {
+  "entries": 36,
+  "questions": 20,
+  "recall_at_1": 1.0,
+  "recall_at_4": 1.0,
+  "answer_contains_fact": 0.45,
+  "median_latency_ms": 1005.5,
+  "max_latency_ms": 1182.8,
+  "index_wait_seconds": 27.8
+ },
+ "results": [
+  {
+   "question": "How long did it take me to run along the river?",
+   "expected": [
+    "e01"
+   ],
+   "retrieved": [
+    "e01",
+    "e21",
+    "e18",
+    "e04"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "46 minutes",
+   "answer_contains_fact": true,
+   "latency_ms": 184.5
+  },
+  {
+   "question": "Why was my bread so dense?",
+   "expected": [
+    "e02"
+   ],
+   "retrieved": [
+    "e02",
+    "e22",
+    "e27",
+    "e13"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1044.7
+  },
+  {
+   "question": "When is my filling booked for?",
+   "expected": [
+    "e03"
+   ],
+   "retrieved": [
+    "e03",
+    "e32",
+    "e20",
+    "e10"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "14th",
+   "answer_contains_fact": true,
+   "latency_ms": 908.1
+  },
+  {
+   "question": "What was I reading on the train north?",
+   "expected": [
+    "e04"
+   ],
+   "retrieved": [
+    "e04",
+    "e33",
+    "e29",
+    "e14"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I would not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1075.3
+  },
+  {
+   "question": "Which subscriptions did I get rid of and how much was I spending?",
+   "expected": [
+    "e05"
+   ],
+   "retrieved": [
+    "e05",
+    "e23",
+    "e20",
+    "e29"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1054.3
+  },
+  {
+   "question": "What dish will I cook with my mother in spring?",
+   "expected": [
+    "e06"
+   ],
+   "retrieved": [
+    "e06",
+    "e28",
+    "e16",
+    "e09"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Chicken stew",
+   "answer_contains_fact": false,
+   "latency_ms": 879.7
+  },
+  {
+   "question": "What did I fix on my bicycle?",
+   "expected": [
+    "e07"
+   ],
+   "retrieved": [
+    "e07",
+    "e23",
+    "e12",
+    "e28"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1088.8
+  },
+  {
+   "question": "Which Spanish verbs do I confuse?",
+   "expected": [
+    "e08"
+   ],
+   "retrieved": [
+    "e08",
+    "e10",
+    "e09",
+    "e26"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1013.4
+  },
+  {
+   "question": "How many cherry tomatoes did I pick?",
+   "expected": [
+    "e09"
+   ],
+   "retrieved": [
+    "e09",
+    "e30",
+    "e27",
+    "e16"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)",
+   "answer_contains_fact": false,
+   "latency_ms": 1092.4
+  },
+  {
+   "question": "What is the toughest interview question I expect?",
+   "expected": [
+    "e10"
+   ],
+   "retrieved": [
+    "e10",
+    "e03",
+    "e02",
+    "e14"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1",
+   "answer_contains_fact": false,
+   "latency_ms": 937.2
+  },
+  {
+   "question": "How much memory will my new computer have?",
+   "expected": [
+    "e12"
+   ],
+   "retrieved": [
+    "e12",
+    "e29",
+    "e22",
+    "e02"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "32 GB",
+   "answer_contains_fact": true,
+   "latency_ms": 957.4
+  },
+  {
+   "question": "Who did I climb the mountain with?",
+   "expected": [
+    "e13"
+   ],
+   "retrieved": [
+    "e13",
+    "e14",
+    "e30",
+    "e04"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Priya",
+   "answer_contains_fact": true,
+   "latency_ms": 1066.9
+  },
+  {
+   "question": "What did my grandmother leave that I found while packing?",
+   "expected": [
+    "e16"
+   ],
+   "retrieved": [
+    "e16",
+    "e33",
+    "e19",
+    "e24"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Packed the kitchen into twelve boxes.",
+   "answer_contains_fact": false,
+   "latency_ms": 1182.8
+  },
+  {
+   "question": "Where is Jonas going to live?",
+   "expected": [
+    "e17"
+   ],
+   "retrieved": [
+    "e17",
+    "e35",
+    "e33",
+    "e22"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Lisbon",
+   "answer_contains_fact": true,
+   "latency_ms": 942.0
+  },
+  {
+   "question": "How many food parcels did we pack at the food bank?",
+   "expected": [
+    "e19"
+   ],
+   "retrieved": [
+    "e19",
+    "e16",
+    "e22",
+    "e02"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "140",
+   "answer_contains_fact": true,
+   "latency_ms": 997.6
+  },
+  {
+   "question": "How much do I owe in tax?",
+   "expected": [
+    "e20"
+   ],
+   "retrieved": [
+    "e20",
+    "e05",
+    "e23",
+    "e35"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 1051.2
+  },
+  {
+   "question": "How much did the car repair cost?",
+   "expected": [
+    "e23"
+   ],
+   "retrieved": [
+    "e23",
+    "e07",
+    "e12",
+    "e03"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 993.5
+  },
+  {
+   "question": "What colour will the bowl be glazed?",
+   "expected": [
+    "e26"
+   ],
+   "retrieved": [
+    "e26",
+    "e28",
+    "e09",
+    "e06"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "dark green",
+   "answer_contains_fact": true,
+   "latency_ms": 881.1
+  },
+  {
+   "question": "How much does the cat weigh?",
+   "expected": [
+    "e31"
+   ],
+   "retrieved": [
+    "e31",
+    "e23",
+    "e09",
+    "e28"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "4.2 kilos",
+   "answer_contains_fact": true,
+   "latency_ms": 1019.7
+  },
+  {
+   "question": "Which row are the concert seats in?",
+   "expected": [
+    "e32"
+   ],
+   "retrieved": [
+    "e32",
+    "e29",
+    "e18",
+    "e11"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "F",
+   "answer_contains_fact": true,
+   "latency_ms": 892.9
+  }
+ ]
+}

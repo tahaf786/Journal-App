@@ -1,0 +1,323 @@
+{
+    "metrics": {
+        "vus": {
+            "value": 0,
+            "min": 0,
+            "max": 20
+        },
+        "http_req_sending": {
+            "p(90)": 0.038542,
+            "p(95)": 0.059111,
+            "p(99)": 0.11308559999999994,
+            "max": 7.70893,
+            "min": 0.006272,
+            "med": 0.019096,
+            "avg": 0.027152669198921304
+        },
+        "http_reqs{scenario:measure}": {
+            "count": 59682,
+            "rate": 706.4214246304742,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "iteration_duration": {
+            "max": 470.472121,
+            "min": 20.445182,
+            "med": 40.302885,
+            "avg": 44.61260506965782,
+            "p(90)": 60.920435,
+            "p(95)": 68.206114,
+            "p(99)": 92.62848980000004
+        },
+        "events_updated{scenario:measure}": {
+            "count": 27132,
+            "rate": 321.14584117613396,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "http_req_receiving": {
+            "med": 0.080721,
+            "avg": 0.1840554063888793,
+            "p(90)": 0.305741,
+            "p(95)": 0.518463,
+            "p(99)": 1.6822709999999943,
+            "max": 16.753401,
+            "min": 0.016491
+        },
+        "verify_entries_stored": {
+            "value": 28702,
+            "min": 28702,
+            "max": 28702
+        },
+        "events_created": {
+            "count": 35861,
+            "rate": 424.4659815132441,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "checks": {
+            "passes": 78881,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_duration": {
+            "min": 0.869372,
+            "med": 18.286122,
+            "avg": 20.070015162596043,
+            "p(90)": 26.417101,
+            "p(95)": 30.132389,
+            "p(99)": 43.66402339999998,
+            "max": 409.409253
+        },
+        "data_received": {
+            "count": 46681404,
+            "rate": 552540.8652094554
+        },
+        "data_sent": {
+            "count": 47413191,
+            "rate": 561202.6060201866
+        },
+        "http_req_duration{expected_response:true}": {
+            "min": 0.869372,
+            "med": 18.286122,
+            "avg": 20.070015162596043,
+            "p(90)": 26.417101,
+            "p(95)": 30.132389,
+            "p(99)": 43.66402339999998,
+            "max": 409.409253
+        },
+        "http_req_waiting": {
+            "min": 0.760008,
+            "med": 18.082698,
+            "avg": 19.85880708700837,
+            "p(90)": 26.156808,
+            "p(95)": 29.8017,
+            "p(99)": 43.258599199999885,
+            "max": 409.322522
+        },
+        "events_deleted": {
+            "count": 7159,
+            "rate": 84.73695551304522,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "http_req_tls_handshaking": {
+            "min": 0,
+            "med": 0,
+            "avg": 0,
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0,
+            "max": 0
+        },
+        "verify_stats_entry_count": {
+            "value": 28702,
+            "min": 28702,
+            "max": 28702
+        },
+        "http_req_blocked": {
+            "min": 0.001643,
+            "med": 0.005009,
+            "avg": 0.012245058178549009,
+            "p(90)": 0.007754,
+            "p(95)": 0.009187,
+            "p(99)": 0.29457219999999923,
+            "max": 7.145594
+        },
+        "vus_max": {
+            "value": 40,
+            "min": 40,
+            "max": 40
+        },
+        "http_req_failed": {
+            "fails": 78981,
+            "passes": 0,
+            "value": 0
+        },
+        "iterations": {
+            "count": 35861,
+            "rate": 424.4659815132441
+        },
+        "verify_drain_seconds": {
+            "value": 0.024,
+            "min": 0.024,
+            "max": 0.024
+        },
+        "http_req_connecting": {
+            "max": 7.070102,
+            "min": 0,
+            "med": 0,
+            "avg": 0.004864093592129757,
+            "p(90)": 0,
+            "p(95)": 0,
+            "p(99)": 0.15940399999999932
+        },
+        "http_reqs": {
+            "count": 78981,
+            "rate": 934.8525608850152
+        },
+        "events_updated": {
+            "count": 35861,
+            "rate": 424.4659815132441,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "events_created{scenario:measure}": {
+            "count": 27132,
+            "rate": 321.14584117613396,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "http_req_duration{scenario:measure}": {
+            "p(95)": 29.35389525,
+            "p(99)": 42.900284860000106,
+            "max": 409.409253,
+            "min": 6.675381,
+            "med": 18.0736955,
+            "avg": 19.86175774846697,
+            "p(90)": 25.8056411,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "events_deleted{scenario:measure}": {
+            "count": 5418,
+            "rate": 64.12974227820631,
+            "thresholds": {
+                "count>=0": false
+            }
+        },
+        "http_req_failed{scenario:measure}": {
+            "passes": 0,
+            "fails": 59682,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "verify_ok": {
+            "value": 1,
+            "min": 1,
+            "max": 1
+        }
+    },
+    "setup_data": {
+        "users": [
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTAiLCJ1aWQiOiI2YjAzODEwNmU4ZTgyOTFlYjQ5N2UzMDciLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MCwiZXhwIjoxNzk1MzkyNjUwfQ.L4fBD3ByJoKClH265x4y6M6uC0p7OXNI5Et8PxrJINY",
+                "username": "wr-1795391750600-0"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTEiLCJ1aWQiOiI2YjAzODEwNmU4ZTgyOTFlYjQ5N2UzMDgiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MCwiZXhwIjoxNzk1MzkyNjUwfQ.6fO_wqr6d4v17A7zje2iHklSTr1N8TWoO2BCZZ9yU_s",
+                "username": "wr-1795391750600-1"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTIiLCJ1aWQiOiI2YjAzODEwNmU4ZTgyOTFlYjQ5N2UzMDkiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.O2sTqhlyyxsHg_AXS1FpZ1KqiejkVtkTvx_TnOrtI8k",
+                "username": "wr-1795391750600-2"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTMiLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGEiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.KYW6MlhvWyABy6ESGkBfxMimMkpgU5c9H1TrB6aTT2M",
+                "username": "wr-1795391750600-3"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTQiLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGIiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.0-KPMRoUWOhqH5V7oNSu1yMrMxtgNaLjx5G152lJwTU",
+                "username": "wr-1795391750600-4"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTUiLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGMiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.7bgHMzBOape0OZjjc-YWXQrKpoFrGsjzunfWpelW3LQ",
+                "username": "wr-1795391750600-5"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTYiLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGQiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.Q4CzryzwTbC-6dkK_2kMvspwHP4ZYvO_wpsL8Ctm33U",
+                "username": "wr-1795391750600-6"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTciLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGUiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.T9FNSIePln0wLLK3vFPJvbrpwkDe1ruVFQcChns86EE",
+                "username": "wr-1795391750600-7"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTgiLCJ1aWQiOiI2YjAzODEwN2U4ZTgyOTFlYjQ5N2UzMGYiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MSwiZXhwIjoxNzk1MzkyNjUxfQ.apjiDx1_WrxnDPl82HOag93aRN4HskW63kFjMLe420w",
+                "username": "wr-1795391750600-8"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTkiLCJ1aWQiOiI2YjAzODEwOGU4ZTgyOTFlYjQ5N2UzMTAiLCJyb2xlcyI6WyJVU0VSIl0sInR5cCI6IkFDQ0VTUyIsImlhdCI6MTc5NTM5MTc1MiwiZXhwIjoxNzk1MzkyNjUyfQ.v4qKs3r2dLjW3W-1Ql4x80DsT0WQ8A84K5_xDPqn2Pw",
+                "username": "wr-1795391750600-9"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTEwIiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzExIiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0.Lo92aOx2ibFaFYWijRiXnecx0MfZ6R3Rz2QJJ_32nsk",
+                "username": "wr-1795391750600-10"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTExIiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzEyIiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0.iyQVu929iqZmEoC73oE57798gw7UTia9Qkp_EPgGq8s",
+                "username": "wr-1795391750600-11"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTEyIiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzEzIiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0.69R8pEtFr87VIddxdlXCbOhztWk61DNFWlb93IQaMXw",
+                "username": "wr-1795391750600-12"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTEzIiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzE0Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0.1MBBdDxGcPEfldslAFQ4VkQgRUbrh4DGwaWYQroHaQ8",
+                "username": "wr-1795391750600-13"
+            },
+            {
+                "username": "wr-1795391750600-14",
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE0IiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzE1Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0.yYy-O6oJYVV2KK4z_mYnNEWepVploURS9Y96rdo7O3Y"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE1IiwidWlkIjoiNmIwMzgxMDhlOGU4MjkxZWI0OTdlMzE2Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTIsImV4cCI6MTc5NTM5MjY1Mn0._ypaJamuO17yxWD-rp-6gDL-reQCbyh1m1VPmOrs5to",
+                "username": "wr-1795391750600-15"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE2IiwidWlkIjoiNmIwMzgxMDllOGU4MjkxZWI0OTdlMzE3Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTMsImV4cCI6MTc5NTM5MjY1M30.hupLm0YVxLokY-1r3PcdLVP2mnK_fixtd9v3Timdz-0",
+                "username": "wr-1795391750600-16"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE3IiwidWlkIjoiNmIwMzgxMDllOGU4MjkxZWI0OTdlMzE4Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTMsImV4cCI6MTc5NTM5MjY1M30.0lVr03Y8cLjJvOIqCN9la2xDR97LK6jKqFTMyHMBZro",
+                "username": "wr-1795391750600-17"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE4IiwidWlkIjoiNmIwMzgxMDllOGU4MjkxZWI0OTdlMzE5Iiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTMsImV4cCI6MTc5NTM5MjY1M30.dC86it5PWyCU5Ucsqf0Iwe_6Ujbngdduc9lIGR1ek8g",
+                "username": "wr-1795391750600-18"
+            },
+            {
+                "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3ci0xNzk1MzkxNzUwNjAwLTE5IiwidWlkIjoiNmIwMzgxMDllOGU4MjkxZWI0OTdlMzFhIiwicm9sZXMiOlsiVVNFUiJdLCJ0eXAiOiJBQ0NFU1MiLCJpYXQiOjE3OTUzOTE3NTMsImV4cCI6MTc5NTM5MjY1M30.6mnQNDm-xzG1cJu282sZkRFFhiE1Ya3MhK209x4jNTI",
+                "username": "wr-1795391750600-19"
+            }
+        ]
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+            "create 201": {
+                "name": "create 201",
+                "path": "::create 201",
+                "id": "156654209db568811cc0f7da2d599478",
+                "passes": 35861,
+                "fails": 0
+            },
+            "update 200": {
+                "id": "7ea104c1961d25326c0409f06885ea15",
+                "passes": 35861,
+                "fails": 0,
+                "name": "update 200",
+                "path": "::update 200"
+            },
+            "delete 204": {
+                "name": "delete 204",
+                "path": "::delete 204",
+                "id": "64a47c6a524c056844e665ff7d06a25c",
+                "passes": 7159,
+                "fails": 0
+            }
+        }
+    }
+}

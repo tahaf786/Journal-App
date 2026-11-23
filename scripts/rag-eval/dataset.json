@@ -1,0 +1,326 @@
+{
+ "entries": [
+  {
+   "key": "e01",
+   "title": "Monday run by the river",
+   "content": "Ran 8 km along the river before work. Legs felt heavy but I kept a steady pace and finished in 46 minutes."
+  },
+  {
+   "key": "e02",
+   "title": "Sourdough attempt",
+   "content": "My first sourdough loaf came out dense. The starter was only three days old, so I will wait a week before trying again."
+  },
+  {
+   "key": "e03",
+   "title": "Dentist appointment",
+   "content": "Dr. Okafor found one small cavity and booked a filling for the 14th. The cleaning itself was painless."
+  },
+  {
+   "key": "e04",
+   "title": "Train to Edinburgh",
+   "content": "Took the 07:15 train to Edinburgh. Spent the ride reading a novel about lighthouse keepers and watching sheep out of the window."
+  },
+  {
+   "key": "e05",
+   "title": "Budget review",
+   "content": "Went through the bank statements. Subscriptions cost me 62 pounds a month, and I cancelled the two streaming services I never use."
+  },
+  {
+   "key": "e06",
+   "title": "Mum's birthday",
+   "content": "Called Mum for her 60th birthday. We agreed to cook her favourite lamb stew together when I visit in March."
+  },
+  {
+   "key": "e07",
+   "title": "Bike repair",
+   "content": "The rear tyre had a slow puncture. Replaced the inner tube in the garage and oiled the chain while I was at it."
+  },
+  {
+   "key": "e08",
+   "title": "Spanish lesson",
+   "content": "Learned the past tense of regular verbs in Spanish. Still mixing up fui and fue, need more practice with flashcards."
+  },
+  {
+   "key": "e09",
+   "title": "Garden tomatoes",
+   "content": "The first tomatoes finally ripened on the balcony. Picked six cherry tomatoes and ate them warm from the plant."
+  },
+  {
+   "key": "e10",
+   "title": "Job interview prep",
+   "content": "Practised answers for Thursday's interview at the logistics startup. The hardest question will be about a time I disagreed with a manager."
+  },
+  {
+   "key": "e11",
+   "title": "Rainy cinema night",
+   "content": "Watched an old black and white film about a jazz pianist at the small cinema on Elm Street. The soundtrack was wonderful."
+  },
+  {
+   "key": "e12",
+   "title": "New laptop",
+   "content": "Ordered a refurbished laptop with 32 GB of memory. It should arrive next Tuesday and will replace the one with the broken hinge."
+  },
+  {
+   "key": "e13",
+   "title": "Hiking Ben Nevis",
+   "content": "Climbed Ben Nevis with Priya. Clouds covered the summit, but we reached the top in about five hours and ate sandwiches in the wind."
+  },
+  {
+   "key": "e14",
+   "title": "Book club",
+   "content": "Book club met at Sam's flat. We argued about the ending of the novel for two hours and agreed to read a biography of a polar explorer next."
+  },
+  {
+   "key": "e15",
+   "title": "Insomnia night",
+   "content": "Could not sleep until 3 am. I read for a while, drank chamomile tea and decided to stop looking at my phone after ten."
+  },
+  {
+   "key": "e16",
+   "title": "Moving boxes",
+   "content": "Packed the kitchen into twelve boxes. Found my grandmother's recipe tin at the back of a cupboard and put it in my bag so it cannot get lost."
+  },
+  {
+   "key": "e17",
+   "title": "Coffee with Jonas",
+   "content": "Met Jonas at the cafe near the station. He is moving to Lisbon in June to work as a ceramic designer."
+  },
+  {
+   "key": "e18",
+   "title": "Piano practice",
+   "content": "Spent forty minutes on the slow movement of a Beethoven sonata. The left hand is still uneven in bar 17."
+  },
+  {
+   "key": "e19",
+   "title": "Volunteering shift",
+   "content": "Worked a shift at the food bank sorting tinned goods. We packed 140 parcels, and the manager thanked everyone with homemade flapjacks."
+  },
+  {
+   "key": "e20",
+   "title": "Tax return",
+   "content": "Submitted my self-assessment tax return a week before the deadline. I owe 480 pounds and set up a payment for the end of the month."
+  },
+  {
+   "key": "e21",
+   "title": "Swimming lesson",
+   "content": "Third swimming lesson. I can now do front crawl for two lengths without stopping, and the coach fixed my breathing rhythm."
+  },
+  {
+   "key": "e22",
+   "title": "Dream about a house",
+   "content": "Dreamt that my old school had turned into a house with a hundred staircases. I kept trying to find the kitchen and woke up hungry."
+  },
+  {
+   "key": "e23",
+   "title": "Car service",
+   "content": "Took the car for its annual service. The garage replaced the brake pads and the bill came to 215 pounds."
+  },
+  {
+   "key": "e24",
+   "title": "Photography walk",
+   "content": "Walked through the old docks with my camera at sunrise. The best shot was a rusted crane reflected in a puddle."
+  },
+  {
+   "key": "e25",
+   "title": "Team retrospective",
+   "content": "At work we held a retrospective on the last release. The main lesson was to write the deployment checklist before the code freeze."
+  },
+  {
+   "key": "e26",
+   "title": "Pottery class",
+   "content": "Made my first bowl on the wheel. It collapsed twice, but the third one survived and the teacher said it would be glazed in dark green."
+  },
+  {
+   "key": "e27",
+   "title": "Thunderstorm",
+   "content": "A thunderstorm knocked out the power for three hours. We played cards by candlelight and the neighbours brought over soup."
+  },
+  {
+   "key": "e28",
+   "title": "Learning to cook curry",
+   "content": "Cooked a chickpea curry from scratch with coconut milk and fresh ginger. Too much chilli, but everyone finished their plate."
+  },
+  {
+   "key": "e29",
+   "title": "Library visit",
+   "content": "Borrowed four books at the library, including one on the history of cartography. The librarian recommended a quiet reading corner upstairs."
+  },
+  {
+   "key": "e30",
+   "title": "Football with the cousins",
+   "content": "Played five-a-side football with my cousins. We lost 7-5, and I scored twice with my weaker left foot."
+  },
+  {
+   "key": "e31",
+   "title": "Vet visit",
+   "content": "Took Biscuit the cat to the vet for her vaccinations. She weighs 4.2 kilos and has to lose a little weight, so no more treats."
+  },
+  {
+   "key": "e32",
+   "title": "Concert tickets",
+   "content": "Bought tickets for the folk concert at the town hall on 21 November. Priya and Sam are coming, and seats are in row F."
+  },
+  {
+   "key": "e33",
+   "title": "Grandfather's stories",
+   "content": "Dad told stories about Grandfather working as a ship's radio operator in the 1960s. He once sent a message to a boat near Iceland."
+  },
+  {
+   "key": "e34",
+   "title": "Meditation week",
+   "content": "Finished the seventh day of morning meditation. Ten minutes of breathing practice makes my commute feel much calmer."
+  },
+  {
+   "key": "e35",
+   "title": "Apartment viewing",
+   "content": "Viewed a flat on Harbour Road with a small balcony and south-facing windows. Rent is 1150 pounds, which is above my budget."
+  },
+  {
+   "key": "e36",
+   "title": "Learning chess",
+   "content": "Played online chess for an hour and lost four games in a row. I keep giving away my queen by moving too fast."
+  }
+ ],
+ "questions": [
+  {
+   "question": "How long did it take me to run along the river?",
+   "expected": [
+    "e01"
+   ],
+   "fact": "46"
+  },
+  {
+   "question": "Why was my bread so dense?",
+   "expected": [
+    "e02"
+   ],
+   "fact": "starter"
+  },
+  {
+   "question": "When is my filling booked for?",
+   "expected": [
+    "e03"
+   ],
+   "fact": "14"
+  },
+  {
+   "question": "What was I reading on the train north?",
+   "expected": [
+    "e04"
+   ],
+   "fact": "lighthouse"
+  },
+  {
+   "question": "Which subscriptions did I get rid of and how much was I spending?",
+   "expected": [
+    "e05"
+   ],
+   "fact": "62"
+  },
+  {
+   "question": "What dish will I cook with my mother in spring?",
+   "expected": [
+    "e06"
+   ],
+   "fact": "lamb"
+  },
+  {
+   "question": "What did I fix on my bicycle?",
+   "expected": [
+    "e07"
+   ],
+   "fact": "tube"
+  },
+  {
+   "question": "Which Spanish verbs do I confuse?",
+   "expected": [
+    "e08"
+   ],
+   "fact": "fui"
+  },
+  {
+   "question": "How many cherry tomatoes did I pick?",
+   "expected": [
+    "e09"
+   ],
+   "fact": "six"
+  },
+  {
+   "question": "What is the toughest interview question I expect?",
+   "expected": [
+    "e10"
+   ],
+   "fact": "manager"
+  },
+  {
+   "question": "How much memory will my new computer have?",
+   "expected": [
+    "e12"
+   ],
+   "fact": "32"
+  },
+  {
+   "question": "Who did I climb the mountain with?",
+   "expected": [
+    "e13"
+   ],
+   "fact": "Priya"
+  },
+  {
+   "question": "What did my grandmother leave that I found while packing?",
+   "expected": [
+    "e16"
+   ],
+   "fact": "recipe"
+  },
+  {
+   "question": "Where is Jonas going to live?",
+   "expected": [
+    "e17"
+   ],
+   "fact": "Lisbon"
+  },
+  {
+   "question": "How many food parcels did we pack at the food bank?",
+   "expected": [
+    "e19"
+   ],
+   "fact": "140"
+  },
+  {
+   "question": "How much do I owe in tax?",
+   "expected": [
+    "e20"
+   ],
+   "fact": "480"
+  },
+  {
+   "question": "How much did the car repair cost?",
+   "expected": [
+    "e23"
+   ],
+   "fact": "215"
+  },
+  {
+   "question": "What colour will the bowl be glazed?",
+   "expected": [
+    "e26"
+   ],
+   "fact": "green"
+  },
+  {
+   "question": "How much does the cat weigh?",
+   "expected": [
+    "e31"
+   ],
+   "fact": "4.2"
+  },
+  {
+   "question": "Which row are the concert seats in?",
+   "expected": [
+    "e32"
+   ],
+   "fact": "F"
+  }
+ ]
+}
