@@ -1,0 +1,354 @@
+{
+ "summary": {
+  "entries": 36,
+  "questions": 20,
+  "recall_at_1": 1.0,
+  "recall_at_4": 1.0,
+  "answer_contains_fact": 0.55,
+  "median_latency_ms": 2870.8500000000004,
+  "max_latency_ms": 4317.3,
+  "index_wait_seconds": 105.7
+ },
+ "results": [
+  {
+   "question": "How long did it take me to run along the river?",
+   "expected": [
+    "e01"
+   ],
+   "retrieved": [
+    "e01",
+    "e21",
+    "e18",
+    "e04"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22) Monday run by the river\nRan 8 km along the river before work. Legs felt heavy but I kept a steady pace and finished in 46 minutes.\n\nAnswer: It took you 46 minutes to run 8 km along the river.",
+   "answer_contains_fact": true,
+   "latency_ms": 3391.7
+  },
+  {
+   "question": "Why was my bread so dense?",
+   "expected": [
+    "e02"
+   ],
+   "retrieved": [
+    "e02",
+    "e22",
+    "e27",
+    "e13"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nI could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 2859.5
+  },
+  {
+   "question": "When is my filling booked for?",
+   "expected": [
+    "e03"
+   ],
+   "retrieved": [
+    "e03",
+    "e32",
+    "e20",
+    "e10"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22): Dr. Okafor found one small cavity and booked a filling for the 14th.",
+   "answer_contains_fact": true,
+   "latency_ms": 3807.3
+  },
+  {
+   "question": "What was I reading on the train north?",
+   "expected": [
+    "e04"
+   ],
+   "retrieved": [
+    "e04",
+    "e33",
+    "e29",
+    "e14"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nI could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 2954.0
+  },
+  {
+   "question": "Which subscriptions did I get rid of and how much was I spending?",
+   "expected": [
+    "e05"
+   ],
+   "retrieved": [
+    "e05",
+    "e23",
+    "e20",
+    "e29"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "You got rid of two subscriptions:\n\n1. Streaming services (costs \u00a362 per month)\n2. Car service (cost \u00a3215)",
+   "answer_contains_fact": true,
+   "latency_ms": 3574.1
+  },
+  {
+   "question": "What dish will I cook with my mother in spring?",
+   "expected": [
+    "e06"
+   ],
+   "retrieved": [
+    "e06",
+    "e28",
+    "e16",
+    "e09"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "You will cook lamb stew together when you visit your mother in March.",
+   "answer_contains_fact": true,
+   "latency_ms": 2576.2
+  },
+  {
+   "question": "What did I fix on my bicycle?",
+   "expected": [
+    "e07"
+   ],
+   "retrieved": [
+    "e07",
+    "e23",
+    "e12",
+    "e28"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "You fixed the rear tyre.",
+   "answer_contains_fact": false,
+   "latency_ms": 2155.4
+  },
+  {
+   "question": "Which Spanish verbs do I confuse?",
+   "expected": [
+    "e08"
+   ],
+   "retrieved": [
+    "e08",
+    "e10",
+    "e09",
+    "e26"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "You confuse \"fui\" and \"fue\".",
+   "answer_contains_fact": true,
+   "latency_ms": 2260.4
+  },
+  {
+   "question": "How many cherry tomatoes did I pick?",
+   "expected": [
+    "e09"
+   ],
+   "retrieved": [
+    "e09",
+    "e30",
+    "e27",
+    "e16"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nI could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 2869.8
+  },
+  {
+   "question": "What is the toughest interview question I expect?",
+   "expected": [
+    "e10"
+   ],
+   "retrieved": [
+    "e10",
+    "e03",
+    "e02",
+    "e14"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nI could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 2871.9
+  },
+  {
+   "question": "How much memory will my new computer have?",
+   "expected": [
+    "e12"
+   ],
+   "retrieved": [
+    "e12",
+    "e29",
+    "e22",
+    "e02"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal. (Entry 1)",
+   "answer_contains_fact": false,
+   "latency_ms": 2608.1
+  },
+  {
+   "question": "Who did I climb the mountain with?",
+   "expected": [
+    "e13"
+   ],
+   "retrieved": [
+    "e13",
+    "e14",
+    "e30",
+    "e04"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nYou climbed Ben Nevis with Priya.",
+   "answer_contains_fact": true,
+   "latency_ms": 3113.3
+  },
+  {
+   "question": "What did my grandmother leave that I found while packing?",
+   "expected": [
+    "e16"
+   ],
+   "retrieved": [
+    "e16",
+    "e33",
+    "e19",
+    "e24"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22): My grandmother's recipe tin.\nI could not find that in your journal.",
+   "answer_contains_fact": true,
+   "latency_ms": 3308.4
+  },
+  {
+   "question": "Where is Jonas going to live?",
+   "expected": [
+    "e17"
+   ],
+   "retrieved": [
+    "e17",
+    "e35",
+    "e33",
+    "e22"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22): He is moving to Lisbon in June to work as a ceramic designer.\n(I could not find that in your journal)",
+   "answer_contains_fact": true,
+   "latency_ms": 3545.5
+  },
+  {
+   "question": "How many food parcels did we pack at the food bank?",
+   "expected": [
+    "e19"
+   ],
+   "retrieved": [
+    "e19",
+    "e16",
+    "e22",
+    "e02"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal. (Entry 1)",
+   "answer_contains_fact": false,
+   "latency_ms": 2546.5
+  },
+  {
+   "question": "How much do I owe in tax?",
+   "expected": [
+    "e20"
+   ],
+   "retrieved": [
+    "e20",
+    "e05",
+    "e23",
+    "e35"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal.",
+   "answer_contains_fact": false,
+   "latency_ms": 2205.3
+  },
+  {
+   "question": "How much did the car repair cost?",
+   "expected": [
+    "e23"
+   ],
+   "retrieved": [
+    "e23",
+    "e07",
+    "e12",
+    "e03"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22)\nThe garage replaced the brake pads, so the total cost is $215 pounds.",
+   "answer_contains_fact": true,
+   "latency_ms": 3117.2
+  },
+  {
+   "question": "What colour will the bowl be glazed?",
+   "expected": [
+    "e26"
+   ],
+   "retrieved": [
+    "e26",
+    "e28",
+    "e09",
+    "e06"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1 (2026-11-22) The teacher said it would be glazed in dark green.",
+   "answer_contains_fact": true,
+   "latency_ms": 2756.2
+  },
+  {
+   "question": "How much does the cat weigh?",
+   "expected": [
+    "e31"
+   ],
+   "retrieved": [
+    "e31",
+    "e23",
+    "e09",
+    "e28"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "I could not find that in your journal. (Entry 1)",
+   "answer_contains_fact": false,
+   "latency_ms": 2505.3
+  },
+  {
+   "question": "Which row are the concert seats in?",
+   "expected": [
+    "e32"
+   ],
+   "retrieved": [
+    "e32",
+    "e29",
+    "e18",
+    "e11"
+   ],
+   "hit_at_1": true,
+   "hit_at_4": true,
+   "answer": "Entry 1: F\nEntry 2: I could not find that in your journal.\nEntry 3: I could not find that in your journal.\nEntry 4: I could not find that in your journal.",
+   "answer_contains_fact": true,
+   "latency_ms": 4317.3
+  }
+ ]
+}
